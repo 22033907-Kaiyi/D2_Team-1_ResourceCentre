@@ -170,7 +170,7 @@ public class ResourceCentre {
 		System.out.println(output);
 	}
 
-	// ================================= Option 2 Add an item (CRUD - Create)
+	// ================================= Opticon 2 Add an item (CRUD - Create)
 	// =================================
 	public static Camcorder inputCamcorder() {
 		String tag = Helper.readString("Enter asset tag > ");
