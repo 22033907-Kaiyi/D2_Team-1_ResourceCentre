@@ -111,6 +111,24 @@ public class ResourceCentreTest {
 	public void testRetrieveAllChromebook() {
 		//fail("Not yet implemented");
 		// write your code here
+		//test case 1
+		//test if item list is not null and empty
+		assertNotNull("Test if there is valid Chromebook arrayList to add to",chromebookList);
+		assertEquals("Test that the chromebook arraylist is empty.",0,chromebookList.size());
+		//Attempt to retrieve the chromebooks
+		String allChromebook=ResourceCentre.retrieveAllChromebook(chromebookList);
+		String testOutput="";
+		//Test if output is empty
+		assertEquals("Test that nothing is displayed",testOutput,allChromebook);
+		//Test case 2
+		ResourceCentre.addChromebook(chromebookList,cb1);
+		ResourceCentre.addChromebook(chromebookList,cb2);
+		//Test that list is not empty
+		assertEquals("Test that Chromebook arraylist size is 2.",2,chromebookList.size());
+		//Attempt to retrieve the chromebooks
+		allChromebook=ResourceCentre.retrieveAllChromebook(chromebookList);
+		testOutput=String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0011","My google chromebook 1st","Yes","",40);
+		testOutput+=String.format(testOutput, "%-10s %-30s %-10s %-10s %-20s\n","CB0011","Samsung chromebook 4+");
 	}
 
 	@Test
