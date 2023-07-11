@@ -148,7 +148,7 @@ public class ResourceCentreTest {
 		// write your code here
 		//Test case 1 - Loan an available item.
 		assertNotNull ("Test that item has updated the date of loan", chromebookList.get(1).getDueDate());
-		ResourceCentre.doLoanChromebook(chromebookList, "CBOO11", "8-8-\2020");
+		ResourceCentre.doLoanChromebook(chromebookList, "CBOO11", "8-8-2020");
 		
 	}
 
