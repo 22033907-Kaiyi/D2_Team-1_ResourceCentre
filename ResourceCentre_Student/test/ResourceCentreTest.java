@@ -189,7 +189,7 @@ public class ResourceCentreTest {
 		// Test case 4 - Missing details
 		ResourceCentre.addCamcorder(camcorderList, cc3);
 		assertTrue("Test that there is an item available", camcorderList.get(2).getIsAvailable());
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "" );
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "" ) ;
 		assertFalse("Test that the loan fails.", ok);
 	}
 
