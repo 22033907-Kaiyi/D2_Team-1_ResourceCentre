@@ -68,6 +68,27 @@ public class ResourceCentreTest {
 	public void testAddChromebook() {
 		//fail("Not yet implemented");
 		// write your code here 
+		
+		//Test case 1 - add one item in
+		//before adding item
+		assertEquals(0, chromebookList.size());
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		// After adding one item
+		assertEquals(1, chromebookList.size());
+		
+		//test case 2 -Add second item
+		Chromebook item = cb2;
+		
+		ResourceCentre.addChromebook(chromebookList, item);
+		
+		assertEquals(2, chromebookList.size());
+		assertSame(item,chromebookList.get(1));
+		
+		//test case 4 - adding item with missing data
+		Chromebook cb_missing = new Chromebook  ("CB0014" , "", "Win 10");
+		ResourceCentre.addChromebook(chromebookList, cb_missing);
+		assertEquals(2, chromebookList.size());
+		
 	}
 
 	@Test
@@ -178,9 +199,23 @@ public class ResourceCentreTest {
 		// write your code here
 		//Test case 1 - Loan an available item.
 		ResourceCentre.addChromebook(chromebookList,cb1);
-		ResourceCentre.doLoanChromebook(chromebookList, "CBOO11", "8-8-2020");
-		assertNotNull ("Test that item has updated the date of loan", chromebookList.get(0).getDueDate());
+		Boolean check = ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "8-8-2020");
+		assertTrue("Check if item has been loan", check);
 		
+		//Test case 2 - item is unavailable to loan
+		cb2.setIsAvailable(false);
+		ResourceCentre.addChromebook(chromebookList,cb2);
+		check = ResourceCentre.doLoanChromebook(chromebookList, "CB0012", "8-8-2020");
+		assertFalse("Check if item cannot be loan", check);
+		
+		//Test case 3 - Loan an item not in the list
+		check = ResourceCentre.doLoanChromebook(chromebookList, "CB0016", "8-8-2020");
+		assertFalse("Check if item not in the loan list", check);
+		
+		//Test case 4 - loaning item with missing details
+		ResourceCentre.addChromebook(chromebookList,cb3);
+		check = ResourceCentre.doLoanChromebook(chromebookList, "CB0013", "");
+		assertFalse("Check if item cannot be loan with missing data", check);
 		
 	}
 
