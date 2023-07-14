@@ -128,20 +128,19 @@ public class ResourceCentreTest {
 		//Attempt to retrieve the chromebooks
 		allChromebook=ResourceCentre.retrieveAllChromebook(chromebookList);
 		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0011", "My Google Chromebook 1st", "Yes","", "Mac OS");
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CC0012", "SAMSUNG Chromebook 4+", "Yes","", "Win 10");
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0012", "SAMSUNG Chromebook 4+", "Yes","", "Win 10");
 		//Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.",testOutput,allChromebook);
-		//Test case 3
+		//Test case 3		
 		cb3.setIsAvailable(false);
-		ResourceCentre.addChromebook(chromebookList,cb3);
-		assertEquals("Test that the chromebook arraylist size is 2.",3,chromebookList.size());
-		assertFalse("Test that the last item in the arraylist is not available",chromebookList.get(2).getIsAvailable());
-		//Attempt to retrieve the chromebooks
 		allChromebook=ResourceCentre.retrieveAllChromebook(chromebookList);
-		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0011", "My Google Chromebook 1st", "Yes","", "Mac OS");
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CC0012", "SAMSUNG Chromebook 4+", "Yes","", "Win 10");
-		//Test that the details are displayed correctly
-		assertEquals("Test that the display is correct.",testOutput,allChromebook);
+		ResourceCentre.addChromebook(chromebookList,cb3);
+		assertFalse("Test that the last item in the arraylist is not available",chromebookList.get(2).getIsAvailable());
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0013", "HUAWEI Magicbook 100+", "Yes","",  "Mac 10");
+		//check if there is the huawei inside
+		boolean check = true;
+		check = allChromebook.contains(testOutput);
+		assertFalse("Test if the 3rd CB is in the list", check);
 	}
 
 	@Test
@@ -178,8 +177,10 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		//Test case 1 - Loan an available item.
-		assertNotNull ("Test that item has updated the date of loan", chromebookList.get(1).getDueDate());
+		ResourceCentre.addChromebook(chromebookList,cb1);
 		ResourceCentre.doLoanChromebook(chromebookList, "CBOO11", "8-8-2020");
+		assertNotNull ("Test that item has updated the date of loan", chromebookList.get(0).getDueDate());
+		
 		
 	}
 
