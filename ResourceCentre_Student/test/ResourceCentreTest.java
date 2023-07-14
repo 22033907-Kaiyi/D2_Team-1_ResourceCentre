@@ -252,6 +252,10 @@ public class ResourceCentreTest {
 		boolean returned = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
 		assertTrue("Test if CB0011 is returned", returned);
 		assertTrue("Test that CB0011 is available", chromebookList.get(0).getIsAvailable());
+		
+		//Test Case 2: 
+		returned = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
+		assertFalse("Test that the return fails.", returned);
 	}
 
 	@After
